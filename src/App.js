@@ -137,13 +137,13 @@ returnData = async () => {
 		        <div className="cols" style={{width: "20%", textAlign: "center"}}>
               <Button variant = "success" size = "lg" onClick = {this.storeIPFS}>Save Quest Data</Button>
             </div>
-            <div className="cols" style={{width: "20%", textAlign: "center"}}>
-              <input type = "text" style ={{width: "100%", backgroundColor : "beige"}} value = {this.state.dbText} placeholder = "enter text to store" onChange = {(e) => {this.setState({dbText : e.target.value})}}/>
-
-            </div>
-
+            
             <div className="cols" style={{width: "20%", textAlign: "center"}}>
               <Button variant = "info" size = "lg" onClick = {this.returnData} >Get Quest Data</Button>
+            </div>
+            <div className="cols" style={{width: "20%", textAlign: "center"}}>
+              web3Storage API Key:
+
             </div>
             <div className="cols" style={{width: "30%", maxWidth: "250px", overflowX: "scroll", textAlign: "center"}}>
                 {this.state.storageToken}
