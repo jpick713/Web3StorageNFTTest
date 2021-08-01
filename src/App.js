@@ -36,6 +36,7 @@ class App extends React.Component {
 
     this.storeIPFS = this.storeIPFS.bind(this);
     this.returnData = this.returnData.bind(this);
+    this.updateQuest = this.updateQuest.bind(this);
   }
   
   async componentDidMount() {
@@ -130,7 +131,7 @@ returnData = async () => {
   */
 }
 
-updateQuest = (questNumber) => {
+updateQuest = async (questNumber) => {
   
   if (questNumber == 1){
     if (this.state.quest_1_text.trim() !== "Polygon-1"){return;}
@@ -150,7 +151,7 @@ updateQuest = (questNumber) => {
     currentQuestString += currentQuestString.substring(0,2) + 'Y';
     localStorage.setItem(this.state.account , currentQuestString);
   }
-  
+
 }
 
   render(){
