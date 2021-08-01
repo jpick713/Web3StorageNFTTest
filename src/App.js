@@ -18,7 +18,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: null,
-      accounts: null,
+      account: null,
       storeContract: null,
       questNFTContract:null,
       discoveryMergeNFTContract:null,
@@ -27,7 +27,10 @@ class App extends React.Component {
       dbText : "",
       quest_1_Text : "",
       quest_2_Text : "",
-      quest_3_Text : ""
+      quest_3_Text : "",
+      quest_1_complete : false,
+      quest_2_complete : false,
+      quest_3_complete : false,
 
     }
 
@@ -86,7 +89,13 @@ class App extends React.Component {
       const storeContract = new web3.eth.Contract(NFTStore.abi, networkNFTStoreData.address);
       const questNFTContract = new web3.eth.Contract(QuestCompleteNFT.abi, networkQuestNFTData.address);
       const discoveryMergeNFTContract = new web3.eth.Contract(DiscoveryMergeNFT.abi, networkDiscoveryMergeNFTData.address);
-      this.setState({storeContract, questNFTContract , discoveryMergeNFTContract});}
+      this.setState({storeContract, questNFTContract , discoveryMergeNFTContract});
+      const checkStorage = localStorage.getItem(this.state.account);
+      if(!checkStorage){
+        localStorage.setItem(this.state.account, 'NNN');
+      }
+      alert(`${localStorage.getItem(this.state.account)[0]} & ${localStorage.getItem(this.state.account)[1]} & ${localStorage.getItem(this.state.account)[2]}`)
+    }
       else {
       window.alert('County contract not deployed to detected network.')
     }
@@ -95,6 +104,10 @@ class App extends React.Component {
   setEventListeners(){
   window.ethereum.on('accountsChanged', async (accounts) => {
     this.setState({account : accounts[0]});
+    const checkStorage = localStorage.getItem(this.state.account);
+    if(!checkStorage){
+      localStorage.setItem(this.state.account, 'NNN');
+    }
   });
 }
 
@@ -106,6 +119,8 @@ storeIPFS = async () => {
   alert(hash);
   this.state.counter++;
   this.setState({dbText : ""});*/
+  
+  
 }
 
 returnData = async () => {
@@ -115,6 +130,28 @@ returnData = async () => {
   */
 }
 
+updateQuest = (questNumber) => {
+  
+  if (questNumber == 1){
+    if (this.state.quest_1_text.trim() !== "Polygon-1"){return;}
+    var currentQuestString = localStorage.getItem(this.state.account);
+    currentQuestString += 'Y' + currentQuestString.substring(1);
+    localStorage.setItem(this.state.account , currentQuestString);
+  }
+  if (questNumber == 2){
+    if (this.state.quest_2_text.trim() !== "Polygon-2"){return;}
+    var currentQuestString = localStorage.getItem(this.state.account);
+    currentQuestString += currentQuestString.substring(0,1) + 'Y' + currentQuestString.substring(2);
+    localStorage.setItem(this.state.account , currentQuestString);
+  }
+  if (questNumber == 3){
+    if (this.state.quest_3_text.trim() !== "Polygon-3"){return;}
+    var currentQuestString = localStorage.getItem(this.state.account);
+    currentQuestString += currentQuestString.substring(0,2) + 'Y';
+    localStorage.setItem(this.state.account , currentQuestString);
+  }
+  
+}
 
   render(){
     return (
@@ -129,7 +166,7 @@ returnData = async () => {
           </header>
         </div>
         <div>
-        {this.state.currentCID}
+        {this.state.account}
         
         </div>
           <div className="columns">
@@ -159,27 +196,27 @@ returnData = async () => {
                 <h4 style={{textAlign : "center", width: "100%"}}><em><u>Polygon Quest</u></em></h4>
                 </div>
                 <div className="mini-columns" style = {{marginTop: "0.25em"}}>
-                  <div className = "mini-cols" style={{width : "50%", textAlign : "right", paddingRight:"0.5em"}}>
+                  <div className = "mini-cols" style={{width : "40%", textAlign : "right", paddingRight:"0.5em"}}>
                     Quest_1 - type "Polygon-1" exactly:
                   </div>
-                  <div className = "mini-cols" style={{width : "50%", textAlign : "center"}}>
+                  <div className = "mini-cols" style={{width : "40%", textAlign : "center"}}>
                     <input type = "text" style ={{width: "98%", backgroundColor : "beige"}} value = {this.state.quest_1_Text} placeholder = "enter text for quest 1" onChange = {(e) => {this.setState({quest_1_Text : e.target.value})}}/> 
                   </div>
                   
                 </div>
                 <div className="mini-columns" style = {{marginTop: "0.5em"}}>
-                  <div className = "mini-cols" style={{width : "50%", textAlign : "right", paddingRight:"0.5em"}}>
+                  <div className = "mini-cols" style={{width : "40%", textAlign : "right", paddingRight:"0.5em"}}>
                   Quest_2 - type "Polygon-2" exactly:
                   </div>
-                  <div className = "mini-cols" style={{width : "50%", textAlign : "center"}}>
+                  <div className = "mini-cols" style={{width : "40%", textAlign : "center"}}>
                     <input type = "text" style ={{width: "98%", backgroundColor : "beige"}} value = {this.state.quest_2_Text} placeholder = "enter text for quest 2" onChange = {(e) => {this.setState({quest_2_Text : e.target.value})}}/> 
                   </div>
                 </div>
                 <div className="mini-columns" style = {{marginTop: "0.5em"}}>
-                  <div className = "mini-cols" style={{width : "50%", textAlign : "right", paddingRight:"0.5em"}}>
+                  <div className = "mini-cols" style={{width : "40%", textAlign : "right", paddingRight:"0.5em"}}>
                   Quest_3 - type "Polygon-3" exactly:
                   </div>
-                  <div className = "mini-cols" style={{width : "50%", textAlign : "center"}}>
+                  <div className = "mini-cols" style={{width : "40%", textAlign : "center"}}>
                     <input type = "text" style ={{width: "98%", backgroundColor : "beige"}} value = {this.state.quest_3_Text} placeholder = "enter text for quest 3" onChange = {(e) => {this.setState({quest_3_Text : e.target.value})}}/> 
                   </div>
                 </div>
