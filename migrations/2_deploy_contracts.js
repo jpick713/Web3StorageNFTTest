@@ -7,4 +7,8 @@ module.exports = async(deployer, network, accounts) => {
   const contractNFTStore = await NFTStore.deployed();
   let deployMergeNFT = await deployer.deploy(DiscoveryMergeNFT, contractNFTStore.address);
   let deployQuestCompleteNFT = await deployer.deploy(QuestCompleteNFT, contractNFTStore.address);
+  const contractQuestCompleteNFT = await QuestCompleteNFT.deployed();
+  const contractDiscoveryMergeNFT = await DiscoveryMergeNFT.deployed();
+  await contractNFTStore.addChildNFT(contractQuestCompleteNFT.address);
+  await contractNFTStore.addChildNFT(contractDiscoveryMergeNFT.address);
 };

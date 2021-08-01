@@ -95,6 +95,17 @@ class App extends React.Component {
       if(!checkStorage){
         localStorage.setItem(this.state.account, 'NNN');
       }
+      else{
+        if(localStorage.getItem(this.state.account)[0] === 'Y'){
+          this.setState({quest_1_complete : true})
+        }
+        if(localStorage.getItem(this.state.account)[1] === 'Y'){
+          this.setState({quest_2_complete : true})
+        }
+        if(localStorage.getItem(this.state.account)[2] === 'Y'){
+          this.setState({quest_3_complete : true})
+        }
+      }
       alert(`${localStorage.getItem(this.state.account)[0]} & ${localStorage.getItem(this.state.account)[1]} & ${localStorage.getItem(this.state.account)[2]}`)
     }
       else {
@@ -104,10 +115,23 @@ class App extends React.Component {
 
   setEventListeners(){
   window.ethereum.on('accountsChanged', async (accounts) => {
-    this.setState({account : accounts[0]});
+    const checkSumAddress = window.web3.utils.toChecksumAddress(accounts[0]);
+    this.setState({account : checkSumAddress});
     const checkStorage = localStorage.getItem(this.state.account);
+    this.setState({quest_1_complete : false, quest_2_complete : false, quest_3_complete : false})
     if(!checkStorage){
       localStorage.setItem(this.state.account, 'NNN');
+    }
+    else{
+      if(localStorage.getItem(this.state.account)[0] === 'Y'){
+        this.setState({quest_1_complete : true})
+      }
+      if(localStorage.getItem(this.state.account)[1] === 'Y'){
+        this.setState({quest_2_complete : true})
+      }
+      if(localStorage.getItem(this.state.account)[2] === 'Y'){
+        this.setState({quest_3_complete : true})
+      }
     }
   });
 }
@@ -129,29 +153,45 @@ returnData = async () => {
   const value = SDS.students.get(`test-${this.state.counter-1}`);
   alert(`text: ${value.text} and studentID : ${value.studentID}`);
   */
+ alert(localStorage.getItem(this.state.account))
 }
 
 updateQuest = async (questNumber) => {
   
   if (questNumber == 1){
-    if (this.state.quest_1_text.trim() !== "Polygon-1"){return;}
+    if (this.state.quest_1_Text.trim() !== "Polygon-1"){
+      alert('not correct!');
+      this.setState({quest_1_Text : ""}); 
+      return;}
     var currentQuestString = localStorage.getItem(this.state.account);
-    currentQuestString += 'Y' + currentQuestString.substring(1);
+    currentQuestString = 'Y' + currentQuestString.substring(1);
     localStorage.setItem(this.state.account , currentQuestString);
+    this.setState({quest_1_Text : "", quest_1_complete : true});
   }
   if (questNumber == 2){
-    if (this.state.quest_2_text.trim() !== "Polygon-2"){return;}
+    if (this.state.quest_2_Text.trim() !== "Polygon-2"){
+      alert('not correct!');
+      this.setState({quest_2_Text : ""}); 
+      return;}
     var currentQuestString = localStorage.getItem(this.state.account);
-    currentQuestString += currentQuestString.substring(0,1) + 'Y' + currentQuestString.substring(2);
+    currentQuestString = currentQuestString.substring(0,1) + 'Y' + currentQuestString.substring(2);
     localStorage.setItem(this.state.account , currentQuestString);
+    this.setState({quest_2_Text : "", quest_2_complete : true});
   }
   if (questNumber == 3){
-    if (this.state.quest_3_text.trim() !== "Polygon-3"){return;}
+    if (this.state.quest_3_Text.trim() !== "Polygon-3"){
+      alert('not correct!');
+      this.setState({quest_3_Text : ""});
+      return;}
     var currentQuestString = localStorage.getItem(this.state.account);
-    currentQuestString += currentQuestString.substring(0,2) + 'Y';
+    currentQuestString = currentQuestString.substring(0,2) + 'Y';
     localStorage.setItem(this.state.account , currentQuestString);
+    this.setState({quest_3_Text : "", quest_3_complete : true});
   }
   
+  if(localStorage.getItem(this.state.account) === 'YYY'){
+    alert ('Congrats you earned an NFT!');
+  }
 }
 
   render(){
@@ -201,7 +241,10 @@ updateQuest = async (questNumber) => {
                     Quest_1 - type "Polygon-1" exactly:
                   </div>
                   <div className = "mini-cols" style={{width : "40%", textAlign : "center"}}>
-                    <input type = "text" style ={{width: "98%", backgroundColor : "beige"}} value = {this.state.quest_1_Text} placeholder = "enter text for quest 1" onChange = {(e) => {this.setState({quest_1_Text : e.target.value})}}/> 
+                    <input type = "text" style ={{width: "98%", backgroundColor : this.state.quest_1_complete ? "gray" : "beige"}} readOnly = {this.state.quest_1_complete} value = {this.state.quest_1_Text} placeholder = "enter text for quest 1" onChange = {(e) => {this.setState({quest_1_Text : e.target.value})}}/> 
+                  </div>
+                  <div className = "mini-cols" style={{width : "20%", textAlign : "center"}}>
+                    <Button variant = "info" size = "md" onClick = {() => this.updateQuest(1)} >Quest 1</Button>
                   </div>
                   
                 </div>
@@ -210,7 +253,10 @@ updateQuest = async (questNumber) => {
                   Quest_2 - type "Polygon-2" exactly:
                   </div>
                   <div className = "mini-cols" style={{width : "40%", textAlign : "center"}}>
-                    <input type = "text" style ={{width: "98%", backgroundColor : "beige"}} value = {this.state.quest_2_Text} placeholder = "enter text for quest 2" onChange = {(e) => {this.setState({quest_2_Text : e.target.value})}}/> 
+                    <input type = "text" style ={{width: "98%", backgroundColor : this.state.quest_2_complete ? "gray" : "beige"}} readOnly = {this.state.quest_2_complete} value = {this.state.quest_2_Text} placeholder = "enter text for quest 2" onChange = {(e) => {this.setState({quest_2_Text : e.target.value})}}/> 
+                  </div>
+                  <div className = "mini-cols" style={{width : "20%", textAlign : "center"}}>
+                    <Button variant = "info" size = "md" onClick = {() => this.updateQuest(2)} >Quest 2</Button>
                   </div>
                 </div>
                 <div className="mini-columns" style = {{marginTop: "0.5em"}}>
@@ -218,7 +264,10 @@ updateQuest = async (questNumber) => {
                   Quest_3 - type "Polygon-3" exactly:
                   </div>
                   <div className = "mini-cols" style={{width : "40%", textAlign : "center"}}>
-                    <input type = "text" style ={{width: "98%", backgroundColor : "beige"}} value = {this.state.quest_3_Text} placeholder = "enter text for quest 3" onChange = {(e) => {this.setState({quest_3_Text : e.target.value})}}/> 
+                    <input type = "text" style ={{width: "98%", backgroundColor : this.state.quest_3_complete ? "gray" : "beige"}} readOnly = {this.state.quest_3_complete} value = {this.state.quest_3_Text} placeholder = "enter text for quest 3" onChange = {(e) => {this.setState({quest_3_Text : e.target.value})}}/> 
+                  </div>
+                  <div className = "mini-cols" style={{width : "20%", textAlign : "center"}}>
+                    <Button variant = "info" size = "md" onClick = {() => this.updateQuest(3)} >Quest 3</Button>
                   </div>
                 </div>
                 
