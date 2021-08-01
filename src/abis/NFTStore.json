@@ -33,9 +33,9 @@
       "constant": true
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.6+commit.11564f7e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_admins\",\"type\":\"address[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"admins\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Store NFTs and other information for ease of access to a front-end and querying\",\"kind\":\"dev\",\"methods\":{},\"title\":\"NFTStore\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/NFTStore.sol\":\"NFTStore\"},\"evmVersion\":\"berlin\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/NFTStore.sol\":{\"keccak256\":\"0x88fedac4635971630faacd9e8e7ee07a3ac15969ea86922a415b73d3e5668e62\",\"urls\":[\"bzz-raw://ae8900c8c97bb8e8e1d4726ed50e8ab47dc6f24bd7ba5feff920d1ab7b759583\",\"dweb:/ipfs/QmTg2wcrnd6BVrwv4U5fcTB6bQZXiooKptEFAbAp9SR86P\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516105203803806105208339818101604052810190610032919061017c565b60005b81518110156100c2576001600080848481518110610056576100556102fb565b5b602002602001015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555080806100ba90610283565b915050610035565b5050610395565b60006100dc6100d7846101ea565b6101c5565b905080838252602082019050828560208602820111156100ff576100fe61035e565b5b60005b8581101561012f57816101158882610139565b845260208401935060208301925050600181019050610102565b5050509392505050565b6000815190506101488161037e565b92915050565b600082601f83011261016357610162610359565b5b81516101738482602086016100c9565b91505092915050565b60006020828403121561019257610191610368565b5b600082015167ffffffffffffffff8111156101b0576101af610363565b5b6101bc8482850161014e565b91505092915050565b60006101cf6101e0565b90506101db8282610252565b919050565b6000604051905090565b600067ffffffffffffffff8211156102055761020461032a565b5b602082029050602081019050919050565b600061022182610228565b9050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b61025b8261036d565b810181811067ffffffffffffffff8211171561027a5761027961032a565b5b80604052505050565b600061028e82610248565b91507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8214156102c1576102c06102cc565b5b600182019050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b7f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b600080fd5b600080fd5b600080fd5b600080fd5b6000601f19601f8301169050919050565b61038781610216565b811461039257600080fd5b50565b61017c806103a46000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063429b62e514610030575b600080fd5b61004a60048036038101906100459190610095565b610060565b60405161005791906100d1565b60405180910390f35b60006020528060005260406000206000915054906101000a900460ff1681565b60008135905061008f8161012f565b92915050565b6000602082840312156100ab576100aa61012a565b5b60006100b984828501610080565b91505092915050565b6100cb816100fe565b82525050565b60006020820190506100e660008301846100c2565b92915050565b60006100f78261010a565b9050919050565b60008115159050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b600080fd5b610138816100ec565b811461014357600080fd5b5056fea26469706673582212205d1d87e74171d10e32ac98d4ac56401d3acb1ee3df261cc19b3135f5aac23ab764736f6c63430008060033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063429b62e514610030575b600080fd5b61004a60048036038101906100459190610095565b610060565b60405161005791906100d1565b60405180910390f35b60006020528060005260406000206000915054906101000a900460ff1681565b60008135905061008f8161012f565b92915050565b6000602082840312156100ab576100aa61012a565b5b60006100b984828501610080565b91505092915050565b6100cb816100fe565b82525050565b60006020820190506100e660008301846100c2565b92915050565b60006100f78261010a565b9050919050565b60008115159050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b600080fd5b610138816100ec565b811461014357600080fd5b5056fea26469706673582212205d1d87e74171d10e32ac98d4ac56401d3acb1ee3df261cc19b3135f5aac23ab764736f6c63430008060033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.6+commit.11564f7e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_admins\",\"type\":\"address[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"admins\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Store NFTs and other information for ease of access to a front-end and querying\",\"kind\":\"dev\",\"methods\":{},\"title\":\"NFTStore\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/NFTStore.sol\":\"NFTStore\"},\"evmVersion\":\"berlin\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/NFTStore.sol\":{\"keccak256\":\"0x73337a776431b714a386bc0564575795c162945cf0ecc9db25ffa02aea0bbc27\",\"urls\":[\"bzz-raw://6013cde5490e0efb554280058e88b8a21a4d40bbf52c667396aaa3e476137363\",\"dweb:/ipfs/QmdrikZnxpaabnJwg3hbgNsZeKJDqDKEjAXeaVTGc9B9nD\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516105203803806105208339818101604052810190610032919061017c565b60005b81518110156100c2576001600080848481518110610056576100556102fb565b5b602002602001015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555080806100ba90610283565b915050610035565b5050610395565b60006100dc6100d7846101ea565b6101c5565b905080838252602082019050828560208602820111156100ff576100fe61035e565b5b60005b8581101561012f57816101158882610139565b845260208401935060208301925050600181019050610102565b5050509392505050565b6000815190506101488161037e565b92915050565b600082601f83011261016357610162610359565b5b81516101738482602086016100c9565b91505092915050565b60006020828403121561019257610191610368565b5b600082015167ffffffffffffffff8111156101b0576101af610363565b5b6101bc8482850161014e565b91505092915050565b60006101cf6101e0565b90506101db8282610252565b919050565b6000604051905090565b600067ffffffffffffffff8211156102055761020461032a565b5b602082029050602081019050919050565b600061022182610228565b9050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b61025b8261036d565b810181811067ffffffffffffffff8211171561027a5761027961032a565b5b80604052505050565b600061028e82610248565b91507fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8214156102c1576102c06102cc565b5b600182019050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b7f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b600080fd5b600080fd5b600080fd5b600080fd5b6000601f19601f8301169050919050565b61038781610216565b811461039257600080fd5b50565b61017c806103a46000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063429b62e514610030575b600080fd5b61004a60048036038101906100459190610095565b610060565b60405161005791906100d1565b60405180910390f35b60006020528060005260406000206000915054906101000a900460ff1681565b60008135905061008f8161012f565b92915050565b6000602082840312156100ab576100aa61012a565b5b60006100b984828501610080565b91505092915050565b6100cb816100fe565b82525050565b60006020820190506100e660008301846100c2565b92915050565b60006100f78261010a565b9050919050565b60008115159050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b600080fd5b610138816100ec565b811461014357600080fd5b5056fea2646970667358221220f12b939e4e943f48e96f15873c00b8143fb1a02e005438333c4b180b66ad4c0a64736f6c63430008060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063429b62e514610030575b600080fd5b61004a60048036038101906100459190610095565b610060565b60405161005791906100d1565b60405180910390f35b60006020528060005260406000206000915054906101000a900460ff1681565b60008135905061008f8161012f565b92915050565b6000602082840312156100ab576100aa61012a565b5b60006100b984828501610080565b91505092915050565b6100cb816100fe565b82525050565b60006020820190506100e660008301846100c2565b92915050565b60006100f78261010a565b9050919050565b60008115159050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b600080fd5b610138816100ec565b811461014357600080fd5b5056fea2646970667358221220f12b939e4e943f48e96f15873c00b8143fb1a02e005438333c4b180b66ad4c0a64736f6c63430008060033",
   "immutableReferences": {},
   "generatedSources": [
     {
@@ -3254,18 +3254,18 @@
       "name": "#utility.yul"
     }
   ],
-  "sourceMap": "151:246:10:-:0;;;230:165;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;293:6;288:97;307:7;:14;305:1;:16;288:97;;;366:4;345:6;:18;352:7;360:1;352:10;;;;;;;;:::i;:::-;;;;;;;;345:18;;;;;;;;;;;;;;;;:25;;;;;;;;;;;;;;;;;;323:3;;;;;:::i;:::-;;;;288:97;;;;230:165;151:246;;24:744:12;131:5;156:81;172:64;229:6;172:64;:::i;:::-;156:81;:::i;:::-;147:90;;257:5;286:6;279:5;272:21;320:4;313:5;309:16;302:23;;346:6;396:3;388:4;380:6;376:17;371:3;367:27;364:36;361:2;;;415:79;;:::i;:::-;361:2;528:1;513:249;538:6;535:1;532:13;513:249;;;606:3;635:48;679:3;667:10;635:48;:::i;:::-;630:3;623:61;713:4;708:3;704:14;697:21;;747:4;742:3;738:14;731:21;;573:189;560:1;557;553:9;548:14;;513:249;;;517:14;137:631;;;;;;;:::o;774:143::-;831:5;862:6;856:13;847:22;;878:33;905:5;878:33;:::i;:::-;837:80;;;;:::o;940:385::-;1022:5;1071:3;1064:4;1056:6;1052:17;1048:27;1038:2;;1079:79;;:::i;:::-;1038:2;1189:6;1183:13;1214:105;1315:3;1307:6;1300:4;1292:6;1288:17;1214:105;:::i;:::-;1205:114;;1028:297;;;;;:::o;1331:554::-;1426:6;1475:2;1463:9;1454:7;1450:23;1446:32;1443:2;;;1481:79;;:::i;:::-;1443:2;1622:1;1611:9;1607:17;1601:24;1652:18;1644:6;1641:30;1638:2;;;1674:79;;:::i;:::-;1638:2;1779:89;1860:7;1851:6;1840:9;1836:22;1779:89;:::i;:::-;1769:99;;1572:306;1433:452;;;;:::o;1891:129::-;1925:6;1952:20;;:::i;:::-;1942:30;;1981:33;2009:4;2001:6;1981:33;:::i;:::-;1932:88;;;:::o;2026:75::-;2059:6;2092:2;2086:9;2076:19;;2066:35;:::o;2107:311::-;2184:4;2274:18;2266:6;2263:30;2260:2;;;2296:18;;:::i;:::-;2260:2;2346:4;2338:6;2334:17;2326:25;;2406:4;2400;2396:15;2388:23;;2189:229;;;:::o;2424:96::-;2461:7;2490:24;2508:5;2490:24;:::i;:::-;2479:35;;2469:51;;;:::o;2526:126::-;2563:7;2603:42;2596:5;2592:54;2581:65;;2571:81;;;:::o;2658:77::-;2695:7;2724:5;2713:16;;2703:32;;;:::o;2741:281::-;2824:27;2846:4;2824:27;:::i;:::-;2816:6;2812:40;2954:6;2942:10;2939:22;2918:18;2906:10;2903:34;2900:62;2897:2;;;2965:18;;:::i;:::-;2897:2;3005:10;3001:2;2994:22;2784:238;;;:::o;3028:233::-;3067:3;3090:24;3108:5;3090:24;:::i;:::-;3081:33;;3136:66;3129:5;3126:77;3123:2;;;3206:18;;:::i;:::-;3123:2;3253:1;3246:5;3242:13;3235:20;;3071:190;;;:::o;3267:180::-;3315:77;3312:1;3305:88;3412:4;3409:1;3402:15;3436:4;3433:1;3426:15;3453:180;3501:77;3498:1;3491:88;3598:4;3595:1;3588:15;3622:4;3619:1;3612:15;3639:180;3687:77;3684:1;3677:88;3784:4;3781:1;3774:15;3808:4;3805:1;3798:15;3825:117;3934:1;3931;3924:12;3948:117;4057:1;4054;4047:12;4071:117;4180:1;4177;4170:12;4194:117;4303:1;4300;4293:12;4317:102;4358:6;4409:2;4405:7;4400:2;4393:5;4389:14;4385:28;4375:38;;4365:54;;;:::o;4425:122::-;4498:24;4516:5;4498:24;:::i;:::-;4491:5;4488:35;4478:2;;4537:1;4534;4527:12;4478:2;4468:79;:::o;151:246:10:-;;;;;;;",
-  "deployedSourceMap": "151:246:10:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;179:39;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;7:139:12:-;53:5;91:6;78:20;69:29;;107:33;134:5;107:33;:::i;:::-;59:87;;;;:::o;152:329::-;211:6;260:2;248:9;239:7;235:23;231:32;228:2;;;266:79;;:::i;:::-;228:2;386:1;411:53;456:7;447:6;436:9;432:22;411:53;:::i;:::-;401:63;;357:117;218:263;;;;:::o;487:109::-;568:21;583:5;568:21;:::i;:::-;563:3;556:34;546:50;;:::o;602:210::-;689:4;727:2;716:9;712:18;704:26;;740:65;802:1;791:9;787:17;778:6;740:65;:::i;:::-;694:118;;;;:::o;899:96::-;936:7;965:24;983:5;965:24;:::i;:::-;954:35;;944:51;;;:::o;1001:90::-;1035:7;1078:5;1071:13;1064:21;1053:32;;1043:48;;;:::o;1097:126::-;1134:7;1174:42;1167:5;1163:54;1152:65;;1142:81;;;:::o;1352:117::-;1461:1;1458;1451:12;1475:122;1548:24;1566:5;1548:24;:::i;:::-;1541:5;1538:35;1528:2;;1587:1;1584;1577:12;1528:2;1518:79;:::o",
-  "source": "pragma solidity >=0.5.0 <0.9.0;\n\n/**\n * @title NFTStore\n * @dev Store NFTs and other information for ease of access to a front-end and querying\n\n*/\n\n\n\ncontract NFTStore {\n        mapping (address => bool) public admins;\n\n\n        constructor(address[] memory _admins) public{\n            for (uint i = 0; i<_admins.length; i++){\n                admins[_admins[i]] = true;\n            }\n        }\n}",
+  "sourceMap": "151:374:10:-:0;;;230:165;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;293:6;288:97;307:7;:14;305:1;:16;288:97;;;366:4;345:6;:18;352:7;360:1;352:10;;;;;;;;:::i;:::-;;;;;;;;345:18;;;;;;;;;;;;;;;;:25;;;;;;;;;;;;;;;;;;323:3;;;;;:::i;:::-;;;;288:97;;;;230:165;151:374;;24:744:12;131:5;156:81;172:64;229:6;172:64;:::i;:::-;156:81;:::i;:::-;147:90;;257:5;286:6;279:5;272:21;320:4;313:5;309:16;302:23;;346:6;396:3;388:4;380:6;376:17;371:3;367:27;364:36;361:2;;;415:79;;:::i;:::-;361:2;528:1;513:249;538:6;535:1;532:13;513:249;;;606:3;635:48;679:3;667:10;635:48;:::i;:::-;630:3;623:61;713:4;708:3;704:14;697:21;;747:4;742:3;738:14;731:21;;573:189;560:1;557;553:9;548:14;;513:249;;;517:14;137:631;;;;;;;:::o;774:143::-;831:5;862:6;856:13;847:22;;878:33;905:5;878:33;:::i;:::-;837:80;;;;:::o;940:385::-;1022:5;1071:3;1064:4;1056:6;1052:17;1048:27;1038:2;;1079:79;;:::i;:::-;1038:2;1189:6;1183:13;1214:105;1315:3;1307:6;1300:4;1292:6;1288:17;1214:105;:::i;:::-;1205:114;;1028:297;;;;;:::o;1331:554::-;1426:6;1475:2;1463:9;1454:7;1450:23;1446:32;1443:2;;;1481:79;;:::i;:::-;1443:2;1622:1;1611:9;1607:17;1601:24;1652:18;1644:6;1641:30;1638:2;;;1674:79;;:::i;:::-;1638:2;1779:89;1860:7;1851:6;1840:9;1836:22;1779:89;:::i;:::-;1769:99;;1572:306;1433:452;;;;:::o;1891:129::-;1925:6;1952:20;;:::i;:::-;1942:30;;1981:33;2009:4;2001:6;1981:33;:::i;:::-;1932:88;;;:::o;2026:75::-;2059:6;2092:2;2086:9;2076:19;;2066:35;:::o;2107:311::-;2184:4;2274:18;2266:6;2263:30;2260:2;;;2296:18;;:::i;:::-;2260:2;2346:4;2338:6;2334:17;2326:25;;2406:4;2400;2396:15;2388:23;;2189:229;;;:::o;2424:96::-;2461:7;2490:24;2508:5;2490:24;:::i;:::-;2479:35;;2469:51;;;:::o;2526:126::-;2563:7;2603:42;2596:5;2592:54;2581:65;;2571:81;;;:::o;2658:77::-;2695:7;2724:5;2713:16;;2703:32;;;:::o;2741:281::-;2824:27;2846:4;2824:27;:::i;:::-;2816:6;2812:40;2954:6;2942:10;2939:22;2918:18;2906:10;2903:34;2900:62;2897:2;;;2965:18;;:::i;:::-;2897:2;3005:10;3001:2;2994:22;2784:238;;;:::o;3028:233::-;3067:3;3090:24;3108:5;3090:24;:::i;:::-;3081:33;;3136:66;3129:5;3126:77;3123:2;;;3206:18;;:::i;:::-;3123:2;3253:1;3246:5;3242:13;3235:20;;3071:190;;;:::o;3267:180::-;3315:77;3312:1;3305:88;3412:4;3409:1;3402:15;3436:4;3433:1;3426:15;3453:180;3501:77;3498:1;3491:88;3598:4;3595:1;3588:15;3622:4;3619:1;3612:15;3639:180;3687:77;3684:1;3677:88;3784:4;3781:1;3774:15;3808:4;3805:1;3798:15;3825:117;3934:1;3931;3924:12;3948:117;4057:1;4054;4047:12;4071:117;4180:1;4177;4170:12;4194:117;4303:1;4300;4293:12;4317:102;4358:6;4409:2;4405:7;4400:2;4393:5;4389:14;4385:28;4375:38;;4365:54;;;:::o;4425:122::-;4498:24;4516:5;4498:24;:::i;:::-;4491:5;4488:35;4478:2;;4537:1;4534;4527:12;4478:2;4468:79;:::o;151:374:10:-;;;;;;;",
+  "deployedSourceMap": "151:374:10:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;179:39;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;7:139:12:-;53:5;91:6;78:20;69:29;;107:33;134:5;107:33;:::i;:::-;59:87;;;;:::o;152:329::-;211:6;260:2;248:9;239:7;235:23;231:32;228:2;;;266:79;;:::i;:::-;228:2;386:1;411:53;456:7;447:6;436:9;432:22;411:53;:::i;:::-;401:63;;357:117;218:263;;;;:::o;487:109::-;568:21;583:5;568:21;:::i;:::-;563:3;556:34;546:50;;:::o;602:210::-;689:4;727:2;716:9;712:18;704:26;;740:65;802:1;791:9;787:17;778:6;740:65;:::i;:::-;694:118;;;;:::o;899:96::-;936:7;965:24;983:5;965:24;:::i;:::-;954:35;;944:51;;;:::o;1001:90::-;1035:7;1078:5;1071:13;1064:21;1053:32;;1043:48;;;:::o;1097:126::-;1134:7;1174:42;1167:5;1163:54;1152:65;;1142:81;;;:::o;1352:117::-;1461:1;1458;1451:12;1475:122;1548:24;1566:5;1548:24;:::i;:::-;1541:5;1538:35;1528:2;;1587:1;1584;1577:12;1528:2;1518:79;:::o",
+  "source": "pragma solidity >=0.5.0 <0.9.0;\n\n/**\n * @title NFTStore\n * @dev Store NFTs and other information for ease of access to a front-end and querying\n\n*/\n\n\n\ncontract NFTStore {\n        mapping (address => bool) public admins;\n\n\n        constructor(address[] memory _admins) public{\n            for (uint i = 0; i<_admins.length; i++){\n                admins[_admins[i]] = true;\n            }\n        }\n\n        modifier onlyAdmin(){\n            require(admins[msg.sender], \"only admin can run\");\n            _;\n        }\n        \n}",
   "sourcePath": "/home/jpick713/BlockChain_Apps/nftIPFS/contracts/NFTStore.sol",
   "ast": {
     "absolutePath": "project:/contracts/NFTStore.sol",
     "exportedSymbols": {
       "NFTStore": [
-        1618
+        1630
       ]
     },
-    "id": 1619,
+    "id": 1631,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -3294,9 +3294,9 @@
           "text": " @title NFTStore\n @dev Store NFTs and other information for ease of access to a front-end and querying"
         },
         "fullyImplemented": true,
-        "id": 1618,
+        "id": 1630,
         "linearizedBaseContracts": [
-          1618
+          1630
         ],
         "name": "NFTStore",
         "nameLocation": "160:8:10",
@@ -3310,7 +3310,7 @@
             "name": "admins",
             "nameLocation": "212:6:10",
             "nodeType": "VariableDeclaration",
-            "scope": 1618,
+            "scope": 1630,
             "src": "179:39:10",
             "stateVariable": true,
             "storageLocation": "default",
@@ -3664,28 +3664,170 @@
               "parameters": [],
               "src": "274:0:10"
             },
-            "scope": 1618,
+            "scope": 1630,
             "src": "230:165:10",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1628,
+              "nodeType": "Block",
+              "src": "425:89:10",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "baseExpression": {
+                          "id": 1620,
+                          "name": "admins",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1589,
+                          "src": "447:6:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                            "typeString": "mapping(address => bool)"
+                          }
+                        },
+                        "id": 1623,
+                        "indexExpression": {
+                          "expression": {
+                            "id": 1621,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "454:3:10",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 1622,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "454:10:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "447:18:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "6f6e6c792061646d696e2063616e2072756e",
+                        "id": 1624,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "467:20:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_2a21bd0f911a13a5307870a607a0bf0d42276e3cf6819adecbb31908c13548b6",
+                          "typeString": "literal_string \"only admin can run\""
+                        },
+                        "value": "only admin can run"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_2a21bd0f911a13a5307870a607a0bf0d42276e3cf6819adecbb31908c13548b6",
+                          "typeString": "literal_string \"only admin can run\""
+                        }
+                      ],
+                      "id": 1619,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "439:7:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 1625,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "439:49:10",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1626,
+                  "nodeType": "ExpressionStatement",
+                  "src": "439:49:10"
+                },
+                {
+                  "id": 1627,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "502:1:10"
+                }
+              ]
+            },
+            "id": 1629,
+            "name": "onlyAdmin",
+            "nameLocation": "414:9:10",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 1618,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "423:2:10"
+            },
+            "src": "405:109:10",
+            "virtual": false,
+            "visibility": "internal"
           }
         ],
-        "scope": 1619,
-        "src": "151:246:10",
+        "scope": 1631,
+        "src": "151:374:10",
         "usedErrors": []
       }
     ],
-    "src": "0:397:10"
+    "src": "0:525:10"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/NFTStore.sol",
     "exportedSymbols": {
       "NFTStore": [
-        1618
+        1630
       ]
     },
-    "id": 1619,
+    "id": 1631,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -3714,9 +3856,9 @@
           "text": " @title NFTStore\n @dev Store NFTs and other information for ease of access to a front-end and querying"
         },
         "fullyImplemented": true,
-        "id": 1618,
+        "id": 1630,
         "linearizedBaseContracts": [
-          1618
+          1630
         ],
         "name": "NFTStore",
         "nameLocation": "160:8:10",
@@ -3730,7 +3872,7 @@
             "name": "admins",
             "nameLocation": "212:6:10",
             "nodeType": "VariableDeclaration",
-            "scope": 1618,
+            "scope": 1630,
             "src": "179:39:10",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4084,19 +4226,161 @@
               "parameters": [],
               "src": "274:0:10"
             },
-            "scope": 1618,
+            "scope": 1630,
             "src": "230:165:10",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1628,
+              "nodeType": "Block",
+              "src": "425:89:10",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "baseExpression": {
+                          "id": 1620,
+                          "name": "admins",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1589,
+                          "src": "447:6:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                            "typeString": "mapping(address => bool)"
+                          }
+                        },
+                        "id": 1623,
+                        "indexExpression": {
+                          "expression": {
+                            "id": 1621,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "454:3:10",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 1622,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "454:10:10",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "447:18:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "6f6e6c792061646d696e2063616e2072756e",
+                        "id": 1624,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "467:20:10",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_2a21bd0f911a13a5307870a607a0bf0d42276e3cf6819adecbb31908c13548b6",
+                          "typeString": "literal_string \"only admin can run\""
+                        },
+                        "value": "only admin can run"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_2a21bd0f911a13a5307870a607a0bf0d42276e3cf6819adecbb31908c13548b6",
+                          "typeString": "literal_string \"only admin can run\""
+                        }
+                      ],
+                      "id": 1619,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "439:7:10",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 1625,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "439:49:10",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1626,
+                  "nodeType": "ExpressionStatement",
+                  "src": "439:49:10"
+                },
+                {
+                  "id": 1627,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "502:1:10"
+                }
+              ]
+            },
+            "id": 1629,
+            "name": "onlyAdmin",
+            "nameLocation": "414:9:10",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 1618,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "423:2:10"
+            },
+            "src": "405:109:10",
+            "virtual": false,
+            "visibility": "internal"
           }
         ],
-        "scope": 1619,
-        "src": "151:246:10",
+        "scope": 1631,
+        "src": "151:374:10",
         "usedErrors": []
       }
     ],
-    "src": "0:397:10"
+    "src": "0:525:10"
   },
   "compiler": {
     "name": "solc",
@@ -4108,10 +4392,16 @@
       "links": {},
       "address": "0x533A72525D893d35b4dc6412f0b8075518414df3",
       "transactionHash": "0xff2244b103eeb5fbc59e29bd5e04c27dc39427eb99415f02f1146efa267651f4"
+    },
+    "1627819188976": {
+      "events": {},
+      "links": {},
+      "address": "0xAa7aa987f40302bD1b904Ed62DA51363a166D537",
+      "transactionHash": "0x263498cdd6045d9feac28ff2f30ba1569203fa0273252ed11139b070cd815cbf"
     }
   },
-  "schemaVersion": "3.4.1",
-  "updatedAt": "2021-07-31T02:53:25.210Z",
+  "schemaVersion": "3.4.2",
+  "updatedAt": "2021-08-01T12:00:49.238Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Store NFTs and other information for ease of access to a front-end and querying",

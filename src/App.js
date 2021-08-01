@@ -151,7 +151,7 @@ updateQuest = async (questNumber) => {
     currentQuestString += currentQuestString.substring(0,2) + 'Y';
     localStorage.setItem(this.state.account , currentQuestString);
   }
-
+  
 }
 
   render(){

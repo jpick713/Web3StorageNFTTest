@@ -17,4 +17,10 @@ contract NFTStore {
                 admins[_admins[i]] = true;
             }
         }
+
+        modifier onlyAdmin(){
+            require(admins[msg.sender], "only admin can run");
+            _;
+        }
+        
 }
