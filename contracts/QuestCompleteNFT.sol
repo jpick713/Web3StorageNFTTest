@@ -13,6 +13,7 @@ contract QuestCompleteNFT is ERC721{
     NFTStore public masterStore;
     mapping (string => mapping (address => bool)) NFTExists;
     mapping (string => uint) latestIndices;
+    mapping (address => mapping (string => string)) public getNFTURIsByAddress;
 
 
     event NFTMinted(address indexed _to, string indexed _tokenURI);
@@ -24,6 +25,7 @@ contract QuestCompleteNFT is ERC721{
     }
 
     function mintToken(address _to , string memory _tokenURI, string memory questType) public {
+        //access control logic?
         require(!NFTExists[questType][_to], "this address already has an NFT for this quest!");
         _mint(_to, ++latestIndices[questType]);
         NFTExists[questType][_to] = true;
