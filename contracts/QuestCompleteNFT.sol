@@ -20,6 +20,7 @@ contract QuestCompleteNFT is ERC721{
         address receiver;
         string quest;
         string URI;
+        uint timestamp;
         bool exists;
     }
 
@@ -39,6 +40,14 @@ contract QuestCompleteNFT is ERC721{
         _mint(_to, tokenID);
         NFTExists[questName][_to] = true;
         getNFTURIsByAddress[_to][questName] = _tokenURI;
+        Quest memory quest_to_add = Quest({
+            receiver : _to,
+            quest : questName,
+            URI : _tokenURI,
+            timestamp : block.timestamp,
+            exists : true
+        });
+        Quests[_to][questName]= quest_to_add;
         emit NFTMinted(_to, _tokenURI);
     }
 

@@ -33,6 +33,7 @@ class App extends React.Component {
       quest_3_complete : false,
       isAdmin : false,
       questString : "",
+      questData : [],
     }
 
     this.storeIPFS = this.storeIPFS.bind(this);
