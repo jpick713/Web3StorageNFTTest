@@ -31,12 +31,16 @@ class App extends React.Component {
       quest_1_complete : false,
       quest_2_complete : false,
       quest_3_complete : false,
-
+      isAdmin : false,
+      questString : "",
     }
 
     this.storeIPFS = this.storeIPFS.bind(this);
     this.returnData = this.returnData.bind(this);
     this.updateQuest = this.updateQuest.bind(this);
+    this.clearData = this.clearData.bind(this);
+    this.RegisterAddress = this.RegisterAddress.bind(this);
+    this.addQuest = this.addQuest.bind(this);
   }
   
   async componentDidMount() {
@@ -106,7 +110,8 @@ class App extends React.Component {
           this.setState({quest_3_complete : true})
         }
       }
-      alert(`${localStorage.getItem(this.state.account)[0]} & ${localStorage.getItem(this.state.account)[1]} & ${localStorage.getItem(this.state.account)[2]}`)
+      const isAdmin = await storeContract.methods.admins(this.state.account).call();
+      this.setState({isAdmin});
     }
       else {
       window.alert('County contract not deployed to detected network.')
@@ -133,6 +138,8 @@ class App extends React.Component {
         this.setState({quest_3_complete : true})
       }
     }
+    const isAdmin = await this.state.storeContract.methods.admins(this.state.account).call();
+    this.setState({isAdmin});
   });
 }
 
@@ -154,6 +161,21 @@ returnData = async () => {
   alert(`text: ${value.text} and studentID : ${value.studentID}`);
   */
  alert(localStorage.getItem(this.state.account))
+}
+
+clearData = async () => {
+  localStorage.setItem(this.state.account , 'NNN');
+  this.setState({quest_1_complete : false, quest_2_complete : false, quest_3_complete : false});
+}
+
+RegisterAddress = async () => {
+  await this.state.storeContract.methods.addAddressToWhiteList(this.state.account).send({from : this.state.account});
+}
+
+addQuest = async () => {
+  await this.state.storeContract.methods.addApprovedQuest(this.state.questString).send({from : this.state.account})
+  .on('error' , () => {this.setState({questString : ""})});
+  this.setState({questString : ""});
 }
 
 updateQuest = async (questNumber) => {
@@ -211,21 +233,38 @@ updateQuest = async (questNumber) => {
         
         </div>
           <div className="columns">
-            <div className="cols" style={{width: "5%", textAlign: "center"}}></div>
-		        <div className="cols" style={{width: "20%", textAlign: "center"}}>
+            <div className="cols" style={{width: "2%", textAlign: "center"}}></div>
+		        <div className="cols" style={{width: "18%", textAlign: "center"}}>
               <Button variant = "success" size = "lg" onClick = {this.storeIPFS}>Save Quest Data</Button>
             </div>
             
-            <div className="cols" style={{width: "20%", textAlign: "center"}}>
+            <div className="cols" style={{width: "18%", textAlign: "center"}}>
               <Button variant = "info" size = "lg" onClick = {this.returnData} >Get Quest Data</Button>
             </div>
-            <div className="cols" style={{width: "20%", textAlign: "center"}}>
-              web3Storage API Key:
-
+            <div className="cols" style={{width: "18%", textAlign: "center"}}>
+              <Button variant = "info" size = "lg" onClick = {this.clearData} >Clear Quest Data</Button>
             </div>
-            <div className="cols" style={{width: "30%", maxWidth: "250px", overflowX: "scroll", textAlign: "center"}}>
+            <div className="cols" style={{width: "19%", textAlign: "center"}}>
+              Web3 Storage Token:
+            </div>
+            <div className="cols" style={{width: "25%", maxWidth: "250px", overflowX: "scroll", textAlign: "center"}}>
                 {this.state.storageToken}
             </div>
+
+          </div>
+
+          <div className="columns">
+            <div className="cols" style={{width: "2%", textAlign: "center"}}></div>
+		        <div className="cols" style={{width: "18%", textAlign: "center"}}>
+              <Button variant = "success" size = "lg" onClick = {this.RegisterAddress}>Register!</Button>
+            </div>
+            
+            <div className="cols" style={{width: "18%", textAlign: "center"}}>
+              <Button variant = "info" size = "lg" onClick = {this.addQuest} >Add Quest (admin only)</Button>
+            </div>
+            <div className="cols" style={{width: "25%", textAlign: "center"}}>
+              <input type = "text" style ={{width: "98%", backgroundColor : this.state.isAdmin ? "beige" : "gainsboro"}} readOnly = {!this.state.isAdmin} value = {this.state.questString} placeholder = "enter new Quest name" onChange = {(e) => {this.setState({questString : e.target.value})}}/>
+            </div>           
 
           </div>
 
