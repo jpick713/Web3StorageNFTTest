@@ -35,6 +35,8 @@ contract QuestCompleteNFT is ERC721{
 
     function mintToken(address _to , string memory _tokenURI, string memory questName) public {
         //access control logic?
+        require(masterStore.whiteList(_to), "address is not registered!");
+        require(masterStore.approvedQuests(questName), "this quest is not valid");
         require(!NFTExists[questName][_to], "this address already has an NFT for this quest!");
         tokenID++;
         _mint(_to, tokenID);

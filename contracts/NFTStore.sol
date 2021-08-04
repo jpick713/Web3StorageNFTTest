@@ -63,5 +63,8 @@ contract NFTStore is Ownable{
             emit QuestApproved(_quest);
         }
         
+        function getQuests() public view returns(string[] memory){
+            return allQuests;
+        }
         
 }
