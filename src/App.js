@@ -35,6 +35,7 @@ class App extends React.Component {
       questString : "",
       questData : [],
       getQuests : [],
+      completedQuestString : ""
     }
 
     this.storeIPFS = this.storeIPFS.bind(this);
@@ -115,9 +116,16 @@ class App extends React.Component {
       const isAdmin = await storeContract.methods.admins(this.state.account).call();
       const getQuests = await storeContract.methods.getQuests().call();
       this.setState({isAdmin, getQuests});
-      if (getQuests){
-        alert(`The number of quests : ${getQuests.length}`);
+      let completedQuestString = "";
+      if(getQuests){
+        for(var i = 0 ; i< getQuests.length; i++){
+          const questStruct = await questNFTContract.methods.Quests(this.state.account, getQuests[i]).call();
+          if (questStruct.exists){
+            completedQuestString += `<tr><td>${questStruct.quest}</td><td>${questStruct.URI}</td><td>${questStruct.timestamp}</td></tr>`
+          }
+        }
       }
+      this.setState({completedQuestString});
     }
       else {
       window.alert('County contract not deployed to detected network.')
@@ -256,6 +264,8 @@ updateQuest = async (questNumber) => {
   }
   
   if(localStorage.getItem(this.state.account) === 'YYY'){
+    const tokenURI = `ipfs://${Math.floor(Math.random()*10000)+1}_${Math.floor(Math.random()*10000)+1}`;
+    await this.state.questNFTContract.methods.mintToken(this.state.account, tokenURI, "Polygon").send({from : this.state.account});
     alert ('Congrats you earned an NFT!');
   }
 }
@@ -308,7 +318,7 @@ updateQuest = async (questNumber) => {
             </div>
             <div className="cols" style={{width: "25%", textAlign: "center"}}>
               <input type = "text" style ={{width: "98%", backgroundColor : this.state.isAdmin ? "beige" : "gainsboro"}} readOnly = {!this.state.isAdmin} value = {this.state.questString} placeholder = "enter new Quest name" onChange = {(e) => {this.setState({questString : e.target.value})}}/>
-            </div>           
+            </div>          
 
           </div>
 
@@ -377,7 +387,7 @@ updateQuest = async (questNumber) => {
                         </tr>
                       </thead>
                       <tbody style={{fontSize : "93%"}}>
-                        
+                        {parse(this.state.completedQuestString)}
                       </tbody>        
                     </Table>
                   </div>
