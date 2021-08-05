@@ -15805,10 +15805,68 @@
       "links": {},
       "address": "0xe30b7c820fa52687cC32c8ba69EFEb1b5Fae8970",
       "transactionHash": "0xb1ae6ca3317122b382986c9bd4a5bad4571a250faf0ce689953dca5078914fc4"
+    },
+    "1628131950449": {
+      "events": {
+        "0x20f41639be800e135f5ae75d4de30b4d124695ecfa9a1dc0a6fda04d0ff9bfa7": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "added",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "timeAdded",
+              "type": "uint256"
+            }
+          ],
+          "name": "NFTAdded",
+          "type": "event"
+        },
+        "0x342827c97908e5e2f71151c08502a66d44b6f758e3ac2f1de95f02eb95f0a735": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "oldOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnerSet",
+          "type": "event"
+        },
+        "0x8d6e2410408d0d15d6e2d1f4f0f396a3ea85b7dfc6f82a888689357f5d98cef0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "string",
+              "name": "questName",
+              "type": "string"
+            }
+          ],
+          "name": "QuestApproved",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xb772Cd35a0CCc48ca3dfB940819aD8c3c6B1F431",
+      "transactionHash": "0xb1d567586f4c20d7dc8ce46b4e9d87ee4ab21f7963cdfe5be8266d8a8a58e1ad"
     }
   },
   "schemaVersion": "3.4.2",
-  "updatedAt": "2021-08-05T02:33:42.223Z",
+  "updatedAt": "2021-08-05T10:24:14.972Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

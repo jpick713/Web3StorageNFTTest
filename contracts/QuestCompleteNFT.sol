@@ -12,7 +12,7 @@ contract QuestCompleteNFT is ERC721{
 
     NFTStore public masterStore;
     uint tokenID;
-    mapping (string => mapping (address => bool)) NFTExists; // check if NFT already minted for this quest for this address/DID
+    mapping (string => mapping (address => bool)) public NFTExists; // check if NFT already minted for this quest for this address/DID
     mapping (address => mapping (string => string)) public getNFTURIsByAddress; //allows retrieval of URIs by address and quest
     mapping (address => mapping(string => Quest)) public Quests; //allows retrieval of Quest metadata in one struct. Can remove once NFT.storage is used
 

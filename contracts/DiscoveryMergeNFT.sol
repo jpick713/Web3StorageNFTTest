@@ -12,6 +12,7 @@ contract DiscoveryMergeNFT is ERC721{
 
     NFTStore public masterStore;
     uint tokenID;
+    mapping (address => bool) approvers;
     mapping (string => uint[]) courseIndices;
     mapping (string => bool) public checkNFTURI;
     mapping (address => mapping(string => Commit[])) public Commits; //address --> course -> versions
@@ -33,10 +34,14 @@ contract DiscoveryMergeNFT is ERC721{
         bool exists;
     }
 
-    function mintToken(address _to , string memory _tokenURI, string memory courseName, uint _version) public {
+    modifier onlyApprover(){
+        require(approvers[msg.sender], "only an approver can mint token");
+        _;
+    }
+
+    function mintToken(address _to , string memory _tokenURI, string memory courseName, uint _version) public onlyApprover() {
         
         require(masterStore.whiteList(_to), "address is not registered!");
-        require(masterStore.admins(msg.sender), "address not eligible to approve merge");
         require(!checkNFTURI[_tokenURI], "this URI already is being used!");
         tokenID++;
         _mint(_to, tokenID);
@@ -52,5 +57,11 @@ contract DiscoveryMergeNFT is ERC721{
         });
         Commits[_to][courseName].push(commit_to_add);
         emit NFTCommitMinted(_to, _tokenURI, courseName);
+    }
+
+    function addApprover(address _approver) public {
+        require (masterStore.admins(msg.sender), "only admins can perform this action");
+        require (!approvers[_approver], "address is already an approver");
+        approvers[_approver]=true;
     }
 }

@@ -264,6 +264,16 @@ updateQuest = async (questNumber) => {
   }
   
   if(localStorage.getItem(this.state.account) === 'YYY'){
+    const isRegistered = await this.state.storeContract.methods.whiteList(this.state.account).call();
+    if(!isRegistered){
+      alert('This address is not registered yet! Please register with your DID');
+      return;
+    }
+    const NFTAlreadyExists = await this.state.questNFTContract.methods.NFTExists("Polygon", this.state.account).call();
+    if(NFTAlreadyExists){
+      alert('This address already has this current NFT! Try another quest');
+      return;
+    }
     const tokenURI = `ipfs://${Math.floor(Math.random()*10000)+1}_${Math.floor(Math.random()*10000)+1}`;
     await this.state.questNFTContract.methods.mintToken(this.state.account, tokenURI, "Polygon").send({from : this.state.account});
     alert ('Congrats you earned an NFT!');
