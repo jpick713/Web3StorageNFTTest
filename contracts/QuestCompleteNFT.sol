@@ -7,10 +7,12 @@ pragma solidity >=0.5.0 <0.9.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "./NFTStore.sol";
+import "./ChainlinkNFT.sol";
 
 contract QuestCompleteNFT is ERC721{
 
     NFTStore public masterStore;
+    ChainlinkNFT public checkNFT;
     uint tokenID;
     mapping (string => mapping (address => bool)) public NFTExists; // check if NFT already minted for this quest for this address/DID
     mapping (address => mapping (string => string)) public getNFTURIsByAddress; //allows retrieval of URIs by address and quest
@@ -33,11 +35,13 @@ contract QuestCompleteNFT is ERC721{
         require(adminCheck, "deployer can't make NFT");
     }
 
-    function mintToken(address _to , string memory _tokenURI, string memory questName) public {
+    function mintToken(address _to , string memory _tokenURI, string memory questName, string memory _did) public {
         //access control logic with chainlink?
         require(masterStore.whiteList(_to), "address is not registered!");
         require(masterStore.approvedQuests(questName), "this quest is not valid");
         require(!NFTExists[questName][_to], "this address already has an NFT for this quest!");
+        checkNFT.requestCeramicData(_did, questName);
+        require(checkNFT.allowMint()==1, "Not all quizzes completed for quest");
         tokenID++;
         _mint(_to, tokenID);
         NFTExists[questName][_to] = true;

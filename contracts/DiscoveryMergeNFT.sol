@@ -43,6 +43,7 @@ contract DiscoveryMergeNFT is ERC721{
         
         require(masterStore.whiteList(_to), "address is not registered!");
         require(!checkNFTURI[_tokenURI], "this URI already is being used!");
+        //insert chainlink call
         tokenID++;
         _mint(_to, tokenID);
         checkNFTURI[_tokenURI] = true;
