@@ -29,10 +29,11 @@ contract QuestCompleteNFT is ERC721{
 
     event NFTMinted(address indexed _to, string indexed _tokenURI);
 
-    constructor(address _masterStoreAddress) ERC721("CompletedDiscoveryQuest", "CDQ") public{
+    constructor(address _masterStoreAddress, address _checkNFTAddress) ERC721("CompletedDiscoveryQuest", "CDQ") public{
         masterStore = NFTStore(_masterStoreAddress);
         bool adminCheck = masterStore.admins(msg.sender);
         require(adminCheck, "deployer can't make NFT");
+        checkNFT = ChainlinkNFT(_checkNFTAddress);
     }
 
     function mintToken(address _to , string memory _tokenURI, string memory questName, string memory _did) public {
