@@ -1,6 +1,7 @@
 import NFTStore from './abis/NFTStore.json';
 import DiscoveryMergeNFT from './abis/DiscoveryMergeNFT.json';
 import QuestCompleteNFT from './abis/QuestCompleteNFT.json';
+import ChainlinkNFT from './abis/ChainlinkNFT.json';
 import './App.css';
 import { render } from '@testing-library/react';
 import React, { useEffect, useState } from "react";
@@ -22,6 +23,7 @@ class App extends React.Component {
       storeContract: null,
       questNFTContract:null,
       discoveryMergeNFTContract:null,
+      chainLinkNFTContract : null,
       currentCID : "",
       storageToken : "",
       dbText : "",
@@ -35,7 +37,10 @@ class App extends React.Component {
       questString : "",
       questData : [],
       getQuests : [],
-      completedQuestString : ""
+      completedQuestString : "",
+      URIString : "",
+      chainlinkAddress : "",
+      allowMint : 0
     }
 
     this.storeIPFS = this.storeIPFS.bind(this);
@@ -44,6 +49,7 @@ class App extends React.Component {
     this.clearData = this.clearData.bind(this);
     this.RegisterAddress = this.RegisterAddress.bind(this);
     this.addQuest = this.addQuest.bind(this);
+    this.addURI = this.addURI.bind(this);
   }
   
   async componentDidMount() {
@@ -91,13 +97,17 @@ class App extends React.Component {
     const networkNFTStoreData = NFTStore.networks[networkId]
     const networkQuestNFTData = QuestCompleteNFT.networks[networkId]
     const networkDiscoveryMergeNFTData = DiscoveryMergeNFT.networks[networkId];
+    const networkChainLinkNFTData = ChainlinkNFT.networks[networkId];
     
     if(networkNFTStoreData) {
       // Assign contract
       const storeContract = new web3.eth.Contract(NFTStore.abi, networkNFTStoreData.address);
       const questNFTContract = new web3.eth.Contract(QuestCompleteNFT.abi, networkQuestNFTData.address);
       const discoveryMergeNFTContract = new web3.eth.Contract(DiscoveryMergeNFT.abi, networkDiscoveryMergeNFTData.address);
-      this.setState({storeContract, questNFTContract , discoveryMergeNFTContract});
+      const chainLinkNFTContract = new web3.eth.Contract(ChainlinkNFT.abi, networkChainLinkNFTData.address);
+      const allowMint = await chainLinkNFTContract.methods.allowMint().call();
+      alert(allowMint);
+      this.setState({storeContract, questNFTContract , discoveryMergeNFTContract, chainLinkNFTContract, chainlinkAddress : networkChainLinkNFTData.address});
       const checkStorage = localStorage.getItem(this.state.account);
       if(!checkStorage){
         localStorage.setItem(this.state.account, 'NNN');
@@ -230,6 +240,12 @@ addQuest = async () => {
   this.setState({questString : ""});
 }
 
+addURI = async () => {
+  await this.state.chainLinkNFTContract.methods.setBaseURI(this.state.URIString).send({from : this.state.account})
+  .on('error' , () => {this.setState({URIString : ""})});
+  this.setState({URIString : ""});
+}
+
 updateQuest = async (questNumber) => {
   
   if (questNumber == 1){
@@ -274,8 +290,13 @@ updateQuest = async (questNumber) => {
       alert('This address already has this current NFT! Try another quest');
       return;
     }
+    const isApproved = await this.state.storeContract.methods.approvedQuests("Polygon").call();
+    if(!isApproved){
+      alert('This quest is not approved');
+      return;
+    }
     const tokenURI = `ipfs://${Math.floor(Math.random()*10000)+1}_${Math.floor(Math.random()*10000)+1}`;
-    await this.state.questNFTContract.methods.mintToken(this.state.account, tokenURI, "Polygon").send({from : this.state.account});
+    await this.state.questNFTContract.methods.mintToken(this.state.account, tokenURI, "Polygon", 1).send({from : this.state.account});
     alert ('Congrats you earned an NFT!');
   }
 }
@@ -293,7 +314,8 @@ updateQuest = async (questNumber) => {
           </header>
         </div>
         <div>
-        {this.state.account}
+        {this.state.account}<br></br>
+        {this.state.chainlinkAddress}
         
         </div>
           <div className="columns">
@@ -329,7 +351,12 @@ updateQuest = async (questNumber) => {
             <div className="cols" style={{width: "25%", textAlign: "center"}}>
               <input type = "text" style ={{width: "98%", backgroundColor : this.state.isAdmin ? "beige" : "gainsboro"}} readOnly = {!this.state.isAdmin} value = {this.state.questString} placeholder = "enter new Quest name" onChange = {(e) => {this.setState({questString : e.target.value})}}/>
             </div>          
-
+            <div className="cols" style={{width: "18%", textAlign: "center"}}>
+              <Button variant = "primary" size = "md" onClick = {this.addURI} >Base URI (owner only)</Button>
+            </div>
+            <div className="cols" style={{width: "18%", textAlign: "center"}}>
+              <input type = "text" style ={{width: "98%", backgroundColor : this.state.isAdmin ? "beige" : "gainsboro"}} readOnly = {!this.state.isAdmin} value = {this.state.URIString} placeholder = "enter new Base URI" onChange = {(e) => {this.setState({URIString : e.target.value})}}/>
+            </div>
           </div>
 
           <div className="columns" style={{backgroundColor : "green", color: "beige", marginTop: "2em", border:"2px solid black"}}>

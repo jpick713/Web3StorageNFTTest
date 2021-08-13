@@ -6,6 +6,7 @@ pragma solidity >=0.5.0 <0.9.0;
 */
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+//import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "./NFTStore.sol";
 import "./ChainlinkNFT.sol";
 
@@ -16,6 +17,9 @@ contract QuestCompleteNFT is ERC721{
     uint tokenID;
     mapping (string => mapping (address => bool)) public NFTExists; // check if NFT already minted for this quest for this address/DID
     mapping (address => mapping (string => string)) public getNFTURIsByAddress; //allows retrieval of URIs by address and quest
+    mapping (string => uint) public tokensMinted;
+    mapping (string => uint) public rarityThreshold;
+    mapping (string => uint[2]) public rarityPercentages;
     mapping (address => mapping(string => Quest)) public Quests; //allows retrieval of Quest metadata in one struct. Can remove once NFT.storage is used
 
     struct Quest {
@@ -28,6 +32,16 @@ contract QuestCompleteNFT is ERC721{
 
 
     event NFTMinted(address indexed _to, string indexed _tokenURI);
+
+    modifier onlyAdmin(){
+        require (masterStore.admins(msg.sender), "Must be admin for this action");
+        _;
+    }
+
+    modifier questExist(string memory _quest){
+        require(masterStore.approvedQuests(_quest), "Not a valid quest");
+        _;
+    }
 
     constructor(address _masterStoreAddress, address _checkNFTAddress) ERC721("CompletedDiscoveryQuest", "CDQ") public{
         masterStore = NFTStore(_masterStoreAddress);
@@ -42,7 +56,8 @@ contract QuestCompleteNFT is ERC721{
         require(masterStore.approvedQuests(questName), "this quest is not valid");
         require(!NFTExists[questName][_to], "this address already has an NFT for this quest!");
         checkNFT.requestCeramicData(_did, questName);
-        require(checkNFT.allowMint()==1, "Not all quizzes completed for quest");
+        uint checkInt = checkNFT.allowMint();
+        require(checkInt==1, "Not all quizzes completed for quest");
         tokenID++;
         _mint(_to, tokenID);
         NFTExists[questName][_to] = true;
@@ -56,5 +71,17 @@ contract QuestCompleteNFT is ERC721{
         });
         Quests[_to][questName]= quest_to_add;
         emit NFTMinted(_to, _tokenURI);
+    }
+
+    function setRarityThreshold(string memory _quest, uint _threshold) public onlyAdmin questExist(_quest){
+        require(_threshold >0);
+        rarityThreshold[_quest] = _threshold;
+
+    }
+
+    function setRarityPercentages(string memory _quest, uint[2] memory _percentages) public onlyAdmin questExist(_quest){
+        require(_percentages[0] >0 && _percentages[1]>0 && _percentages[0] <101 && _percentages[1]<101);
+        rarityPercentages[_quest] = _percentages;
+
     }
 }

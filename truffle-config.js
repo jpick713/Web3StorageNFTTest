@@ -1,10 +1,12 @@
+require('dotenv').config();
 
-
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const fs = require('fs');
+//const secrets = JSON.parse(fs.readFileSync(".secret").toString().trim());
+const mnemonic = fs.readFileSync(".secret").toString().trim();
+const projectID = process.env.PROJECT_ID;
 
 module.exports = {
   /**
@@ -29,6 +31,21 @@ module.exports = {
       port: 8545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
+     matic: {
+      provider: () => new HDWalletProvider(mnemonic, `https://rpc-mumbai.matic.today`),
+      network_id: 80001,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+    kovan : {
+      provider : () => new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${projectID}`),
+      networkCheckTimeout : 10000,
+      network_id : 42,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
