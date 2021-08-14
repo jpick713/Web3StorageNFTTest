@@ -22,7 +22,8 @@ contract DiscoveryMergeNFT is ERC721{
     constructor(address payable _masterStoreAddress) ERC721("CommitGitBook", "CGB") public{
         masterStore = NFTStore(_masterStoreAddress);
         bool adminCheck = masterStore.admins(msg.sender);
-        require(adminCheck, "deployer can't make NFT");
+        require(adminCheck, "deployer can't make NFT Contract");
+        approvers[msg.sender] = true;
     } 
 
     struct Commit {
@@ -35,15 +36,15 @@ contract DiscoveryMergeNFT is ERC721{
     }
 
     modifier onlyApprover(){
-        require(approvers[msg.sender], "only an approver can mint token");
+        require(approvers[msg.sender], "only an approver can perform action");
         _;
     }
 
-    function mintToken(address _to , string memory _tokenURI, string memory courseName, uint _version) public onlyApprover() {
+    function mintToken(address _to , string memory _tokenURI, string memory courseName, uint _version, string memory _did) public onlyApprover() {
         
         require(masterStore.whiteList(_to), "address is not registered!");
         require(!checkNFTURI[_tokenURI], "this URI already is being used!");
-        //insert chainlink call
+        //insert chainlink call for randomness later
         tokenID++;
         _mint(_to, tokenID);
         checkNFTURI[_tokenURI] = true;

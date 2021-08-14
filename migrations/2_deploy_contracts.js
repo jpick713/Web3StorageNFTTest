@@ -14,4 +14,5 @@ module.exports = async(deployer, network, accounts) => {
   const contractDiscoveryMergeNFT = await DiscoveryMergeNFT.deployed();
   await contractNFTStore.addChildNFT(contractQuestCompleteNFT.address);
   await contractNFTStore.addChildNFT(contractDiscoveryMergeNFT.address);
+  await contractCheckNFT.addAllowedCaller(contractQuestCompleteNFT.address);
 };

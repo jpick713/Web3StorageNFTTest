@@ -7,6 +7,7 @@ pragma solidity >=0.5.0 <0.9.0;
 
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 import "./Ownable.sol";
+import "./QuestCompleteNFT.sol";
 
 contract ChainlinkNFT is ChainlinkClient, Ownable{
     using Chainlink for Chainlink.Request;
@@ -15,7 +16,8 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
     bytes32 private jobId;
     uint256 private fee;
     string private baseURI;
-    uint public allowMint; 
+    uint public allowMint;
+    mapping (address => bool) allowedCaller;
 
     event callbackRan(uint questComplete);
 
@@ -28,7 +30,7 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
      */
     
     
-    constructor() public {
+    constructor(address _questAddress) public {
     	setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
         //setPublicChainlinkToken();
         oracle = 0xb33D8A4e62236eA91F3a8fD7ab15A95B9B7eEc7D; //0xc8D925525CA8759812d0c299B90247917d4d4b7C; //0x58BBDbfb6fca3129b91f0DBE372098123B38B5e9; 
@@ -68,7 +70,13 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
         return baseURI;
     }
 
+    function addAllowedCaller(address _allowed) public isOwner{
+        require(!allowedCaller[_allowed], "address already allowed caller");
+        allowedCaller[_allowed] = true;
+    }
+
     function requestCeramicData(string memory _did, string memory _questName) public returns (bytes32 _requestId){
+        require(allowedCaller[msg.sender], "only questNFTContract can call");
         string memory paramString = string(abi.encodePacked("?did=", _did, "&quest=", _questName));
     	Chainlink.Request memory req = buildChainlinkRequest(jobId, address(this), this.fulfillCeramicData.selector);
     	req.add("get", baseURI); //this is API endpoint for server.js or later our server endpoint in cloud or fleek/ENS
