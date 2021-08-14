@@ -15,12 +15,23 @@ contract QuestCompleteNFT is ERC721{
     NFTStore public masterStore;
     ChainlinkNFT public checkNFT;
     uint tokenID;
+    address private checkNFTAddress;
     mapping (string => mapping (address => bool)) public NFTExists; // check if NFT already minted for this quest for this address/DID
     mapping (address => mapping (string => string)) public getNFTURIsByAddress; //allows retrieval of URIs by address and quest
     mapping (string => uint) public tokensMinted;
     mapping (string => uint) public rarityThreshold;
     mapping (string => uint[2]) public rarityPercentages;
     mapping (address => mapping(string => Quest)) public Quests; //allows retrieval of Quest metadata in one struct. Can remove once NFT.storage is used
+    mapping (bytes32 => NFTData) public NFTRequests; // allows storage of parameters while awaiting Chainlink call
+
+    struct NFTData{
+        address to;
+        string URI;
+        string quest;
+        string did;
+        bool completed;
+        bool exists;
+    }
 
     struct Quest {
         address receiver;
@@ -30,7 +41,7 @@ contract QuestCompleteNFT is ERC721{
         bool exists;
     }
 
-
+    event NFTRequestMade(address indexed to, string quest, bytes32 requestID);
     event NFTMinted(address indexed _to, string indexed _tokenURI);
 
     modifier onlyAdmin(){
@@ -43,11 +54,16 @@ contract QuestCompleteNFT is ERC721{
         _;
     }
 
-    constructor(address _masterStoreAddress, address _checkNFTAddress) ERC721("CompletedDiscoveryQuest", "CDQ") public{
+    constructor(address payable _masterStoreAddress, address payable _checkNFTAddress) ERC721("CompletedDiscoveryQuest", "CDQ") public{
         masterStore = NFTStore(_masterStoreAddress);
         bool adminCheck = masterStore.admins(msg.sender);
         require(adminCheck, "deployer can't make NFT");
         checkNFT = ChainlinkNFT(_checkNFTAddress);
+        checkNFTAddress = _checkNFTAddress;
+    }
+
+    receive() external payable {
+
     }
 
     function mintToken(address _to , string memory _tokenURI, string memory questName, string memory _did) public {
@@ -55,22 +71,38 @@ contract QuestCompleteNFT is ERC721{
         require(masterStore.whiteList(_to), "address is not registered!");
         require(masterStore.approvedQuests(questName), "this quest is not valid");
         require(!NFTExists[questName][_to], "this address already has an NFT for this quest!");
-        checkNFT.requestCeramicData(_did, questName);
-        uint checkInt = checkNFT.allowMint();
-        require(checkInt==1, "Not all quizzes completed for quest");
+        bytes32 _requestID = checkNFT.requestCeramicData(_did, questName);
+        NFTRequests[_requestID] = NFTData({
+                    to : _to,
+                    URI : _tokenURI,
+                    quest : questName,
+                    did : _did,
+                    completed : false,
+                    exists : true
+
+        });
+        emit NFTRequestMade(_to, questName, _requestID);
+        
+    }
+
+    function finishMintToken(bytes32 _requestID) public {
+        require(msg.sender == checkNFTAddress, "can only be called from NFT contract");
+        require(NFTRequests[_requestID].exists, "invalid request ID");
         tokenID++;
-        _mint(_to, tokenID);
-        NFTExists[questName][_to] = true;
-        getNFTURIsByAddress[_to][questName] = _tokenURI;
+        NFTData memory NFTMintData = NFTRequests[_requestID];
+        _mint(NFTMintData.to, tokenID);
+        NFTExists[NFTMintData.quest][NFTMintData.to] = true;
+        getNFTURIsByAddress[NFTMintData.to][NFTMintData.quest] = NFTMintData.URI;
         Quest memory quest_to_add = Quest({
-            receiver : _to,
-            quest : questName,
-            URI : _tokenURI,
+            receiver : NFTMintData.to,
+            quest : NFTMintData.quest,
+            URI : NFTMintData.URI,
             timestamp : block.timestamp,
             exists : true
         });
-        Quests[_to][questName]= quest_to_add;
-        emit NFTMinted(_to, _tokenURI);
+        Quests[NFTMintData.to][NFTMintData.quest]= quest_to_add;
+        NFTMintData.completed = true;
+        emit NFTMinted(NFTMintData.to, NFTMintData.URI);
     }
 
     function setRarityThreshold(string memory _quest, uint _threshold) public onlyAdmin questExist(_quest){

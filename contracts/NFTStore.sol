@@ -26,6 +26,10 @@ contract NFTStore is Ownable{
             }
         }
 
+        receive() external payable {
+
+        }
+
         modifier onlyNFTContract(){
             require(childNFTs[msg.sender], "only child NFT contracts can call function");
             _;

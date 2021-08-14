@@ -17,7 +17,7 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
     string private baseURI;
     uint public allowMint; 
 
-    
+    event callbackRan(uint questComplete);
 
     /**
      * Network: Matic Mumbai Testnet
@@ -31,7 +31,7 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
     constructor() public {
     	setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
         //setPublicChainlinkToken();
-        oracle = 0xc8D925525CA8759812d0c299B90247917d4d4b7C; //0x58BBDbfb6fca3129b91f0DBE372098123B38B5e9; 
+        oracle = 0xb33D8A4e62236eA91F3a8fD7ab15A95B9B7eEc7D; //0xc8D925525CA8759812d0c299B90247917d4d4b7C; //0x58BBDbfb6fca3129b91f0DBE372098123B38B5e9; 
         jobId = "da20aae0e4c843f6949e5cb3f7cfe8c4"; 
         fee = 10 ** 16; // 0.01 LINK
     }
@@ -56,8 +56,16 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
 
     */
 
+    receive() external payable {
+
+    }
+
     function setBaseURI(string memory _newBase) public isOwner{
         baseURI = _newBase;
+    }
+
+    function getBaseURI() public view returns(string memory){
+        return baseURI;
     }
 
     function requestCeramicData(string memory _did, string memory _questName) public returns (bytes32 _requestId){
@@ -75,5 +83,7 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
      */
     function fulfillCeramicData(bytes32 _requestId, uint256 _questComplete) public recordChainlinkFulfillment(_requestId) {
     	allowMint = _questComplete;
+
+        emit callbackRan(_questComplete);
     }
 }

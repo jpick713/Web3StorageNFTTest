@@ -40,7 +40,7 @@ class App extends React.Component {
       completedQuestString : "",
       URIString : "",
       chainlinkAddress : "",
-      allowMint : 0
+      allowMint : 0,
     }
 
     this.storeIPFS = this.storeIPFS.bind(this);
@@ -50,6 +50,7 @@ class App extends React.Component {
     this.RegisterAddress = this.RegisterAddress.bind(this);
     this.addQuest = this.addQuest.bind(this);
     this.addURI = this.addURI.bind(this);
+    this.getURI = this.getURI.bind(this);
   }
   
   async componentDidMount() {
@@ -165,6 +166,16 @@ class App extends React.Component {
     const isAdmin = await this.state.storeContract.methods.admins(this.state.account).call();
     this.setState({isAdmin});
   });
+
+  this.state.questNFTContract.events.NFTRequestMade()
+    .on('data', (event) => {
+      window.alert(`quest : ${event.returnValues._quest} and bytes: ${event.returnValues.requestID}`);
+    });
+
+    this.state.chainLinkNFTContract.events.callbackRan()
+    .on('data', (event) => {
+      window.alert(event.returnValues.questComplete);
+    });
 }
 
 /*
@@ -246,6 +257,11 @@ addURI = async () => {
   this.setState({URIString : ""});
 }
 
+getURI = async () => {
+  const currentURI = await this.state.chainLinkNFTContract.methods.getBaseURI().call();
+  alert(currentURI);
+}
+
 updateQuest = async (questNumber) => {
   
   if (questNumber == 1){
@@ -297,7 +313,7 @@ updateQuest = async (questNumber) => {
     }
     const tokenURI = `ipfs://${Math.floor(Math.random()*10000)+1}_${Math.floor(Math.random()*10000)+1}`;
     await this.state.questNFTContract.methods.mintToken(this.state.account, tokenURI, "Polygon", 1).send({from : this.state.account});
-    alert ('Congrats you earned an NFT!');
+    //alert ('Congrats you earned an NFT!');
   }
 }
 
@@ -321,7 +337,7 @@ updateQuest = async (questNumber) => {
           <div className="columns">
             <div className="cols" style={{width: "2%", textAlign: "center"}}></div>
 		        <div className="cols" style={{width: "18%", textAlign: "center"}}>
-              <Button variant = "success" size = "lg" onClick = {this.storeIPFS}>Save Quest Data</Button>
+              <Button variant = "success" size = "lg" onClick = {this.getURI}>Get URI</Button>
             </div>
             
             <div className="cols" style={{width: "18%", textAlign: "center"}}>

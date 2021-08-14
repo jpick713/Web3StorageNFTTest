@@ -19,7 +19,7 @@ contract DiscoveryMergeNFT is ERC721{
 
     event NFTCommitMinted(address indexed _to, string indexed _tokenURI, string indexed course);
 
-    constructor(address _masterStoreAddress) ERC721("CommitGitBook", "CGB") public{
+    constructor(address payable _masterStoreAddress) ERC721("CommitGitBook", "CGB") public{
         masterStore = NFTStore(_masterStoreAddress);
         bool adminCheck = masterStore.admins(msg.sender);
         require(adminCheck, "deployer can't make NFT");
