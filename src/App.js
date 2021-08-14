@@ -74,7 +74,9 @@ class App extends React.Component {
     }
     return body;
   };
-  
+
+
+  /******Put in useEffect on initial render? */
   async loadWeb3() {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum)
@@ -87,6 +89,8 @@ class App extends React.Component {
       window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
     }
   }
+
+  /******Put in useEffect on initial render? */
 
   async loadBlockchainData() {
     const web3 = window.web3
@@ -107,7 +111,6 @@ class App extends React.Component {
       const discoveryMergeNFTContract = new web3.eth.Contract(DiscoveryMergeNFT.abi, networkDiscoveryMergeNFTData.address);
       const chainLinkNFTContract = new web3.eth.Contract(ChainlinkNFT.abi, networkChainLinkNFTData.address);
       const allowMint = await chainLinkNFTContract.methods.allowMint().call();
-      alert(allowMint);
       this.setState({storeContract, questNFTContract , discoveryMergeNFTContract, chainLinkNFTContract, chainlinkAddress : networkChainLinkNFTData.address});
       const checkStorage = localStorage.getItem(this.state.account);
       if(!checkStorage){
@@ -148,6 +151,7 @@ class App extends React.Component {
     const checkSumAddress = window.web3.utils.toChecksumAddress(accounts[0]);
     this.setState({account : checkSumAddress});
     const checkStorage = localStorage.getItem(this.state.account);
+    /**********Don't need */
     this.setState({quest_1_complete : false, quest_2_complete : false, quest_3_complete : false})
     if(!checkStorage){
       localStorage.setItem(this.state.account, 'NNN');
@@ -163,13 +167,15 @@ class App extends React.Component {
         this.setState({quest_3_complete : true})
       }
     }
+    /***********Stop Don't need */
     const isAdmin = await this.state.storeContract.methods.admins(this.state.account).call();
     this.setState({isAdmin});
   });
-
+  
+  /*****can set other listeners */
   this.state.questNFTContract.events.NFTRequestMade()
     .on('data', (event) => {
-      window.alert(`quest : ${event.returnValues._quest} and bytes: ${event.returnValues.requestID}`);
+      window.alert(`quest : ${event.returnValues.quest} and bytes: ${event.returnValues.requestID}`);
     });
 
     this.state.chainLinkNFTContract.events.callbackRan()
@@ -241,27 +247,33 @@ clearData = async () => {
   this.setState({quest_1_complete : false, quest_2_complete : false, quest_3_complete : false});
 }
 
+/* Need in app*/
+
 RegisterAddress = async () => {
   await this.state.storeContract.methods.addAddressToWhiteList(this.state.account).send({from : this.state.account});
 }
 
+/* Need in app*/
 addQuest = async () => {
   await this.state.storeContract.methods.addApprovedQuest(this.state.questString).send({from : this.state.account})
   .on('error' , () => {this.setState({questString : ""})});
   this.setState({questString : ""});
 }
 
+/* Need in app*/
 addURI = async () => {
   await this.state.chainLinkNFTContract.methods.setBaseURI(this.state.URIString).send({from : this.state.account})
   .on('error' , () => {this.setState({URIString : ""})});
   this.setState({URIString : ""});
 }
 
+/*might be nice for demo*/
 getURI = async () => {
   const currentURI = await this.state.chainLinkNFTContract.methods.getBaseURI().call();
   alert(currentURI);
 }
 
+/*need part of this function*/
 updateQuest = async (questNumber) => {
   
   if (questNumber == 1){
