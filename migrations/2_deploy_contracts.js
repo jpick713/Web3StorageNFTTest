@@ -15,4 +15,6 @@ module.exports = async(deployer, network, accounts) => {
   await contractNFTStore.addChildNFT(contractQuestCompleteNFT.address);
   await contractNFTStore.addChildNFT(contractDiscoveryMergeNFT.address);
   await contractCheckNFT.addAllowedCaller(contractQuestCompleteNFT.address);
+  await contractNFTStore.addAddressToWhiteList(accounts[0]);
+  //await contractNFTStore.addApprovedQuest(""); //can do as many times as needed for demo
 };
