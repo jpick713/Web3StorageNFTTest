@@ -15708,6 +15708,64 @@
     "version": "0.8.6+commit.11564f7e.Emscripten.clang"
   },
   "networks": {
+    "42": {
+      "events": {
+        "0x20f41639be800e135f5ae75d4de30b4d124695ecfa9a1dc0a6fda04d0ff9bfa7": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "added",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "timeAdded",
+              "type": "uint256"
+            }
+          ],
+          "name": "NFTAdded",
+          "type": "event"
+        },
+        "0x342827c97908e5e2f71151c08502a66d44b6f758e3ac2f1de95f02eb95f0a735": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "oldOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnerSet",
+          "type": "event"
+        },
+        "0x8d6e2410408d0d15d6e2d1f4f0f396a3ea85b7dfc6f82a888689357f5d98cef0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "string",
+              "name": "questName",
+              "type": "string"
+            }
+          ],
+          "name": "QuestApproved",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x00FA3eC8E624Fb1881e4e7D60DBF6093c27EeC47",
+      "transactionHash": "0x8b1309d8534276097b1a33e30679dba1cc4c243fe90b06c0191c39a29d92d7f4"
+    },
     "80001": {
       "events": {
         "0x20f41639be800e135f5ae75d4de30b4d124695ecfa9a1dc0a6fda04d0ff9bfa7": {
@@ -15763,8 +15821,8 @@
         }
       },
       "links": {},
-      "address": "0x9F1F2ee6aaCd4601Dd2B1FDA777349CA44d298A3",
-      "transactionHash": "0x42dfbdaf858a3dd524403e2730aeb8a6945a6f74b71198e6a9d41507da034ce1"
+      "address": "0x5c460fAbe3a98f091d663a9dCaD4c9F427Bef3bc",
+      "transactionHash": "0x2aa815e2d12a087e614aadc8e809dcda51f596dac6b8dc406e45e3a84520ac46"
     },
     "1627698764613": {
       "events": {},
@@ -16051,7 +16109,7 @@
     }
   },
   "schemaVersion": "3.4.2",
-  "updatedAt": "2021-08-15T11:57:50.699Z",
+  "updatedAt": "2021-09-29T02:54:33.113Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

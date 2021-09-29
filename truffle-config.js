@@ -38,9 +38,9 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
-    kovan : {
-      provider : () => new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${projectID}`),
-      networkCheckTimeout : 10000,
+    kovan: {
+      provider : () => new HDWalletProvider(mnemonic, `wss://kovan.infura.io/ws/v3/${projectID}`),
+      networkCheckTimeout : 10000000,
       network_id : 42,
       confirmations: 2,
       timeoutBlocks: 200,
@@ -94,6 +94,9 @@ module.exports = {
       // }
     }
   },
+  api_keys: {
+    etherscan: process.env.ETHERSCAN_API_KEY
+  },
 
   // Truffle DB is currently disabled by default; to enable it, change enabled: false to enabled: true
   //
@@ -103,5 +106,8 @@ module.exports = {
 
   db: {
     enabled: false
-  }
+  },
+  plugins: [
+    'truffle-plugin-verify'
+  ]
 };

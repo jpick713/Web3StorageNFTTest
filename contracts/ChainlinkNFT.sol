@@ -18,6 +18,7 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
     string private baseURI;
     uint public allowMint;
     mapping (address => bool) allowedCaller;
+    QuestCompleteNFT questContract;
 
     event callbackRan(uint questComplete);
 
@@ -29,7 +30,7 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
      * Fee: 0.01 LINK
      */
     
-    
+    /*
     constructor() public {
     	setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
         //setPublicChainlinkToken();
@@ -37,26 +38,26 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
         jobId = "da20aae0e4c843f6949e5cb3f7cfe8c4"; 
         fee = 10 ** 16; // 0.01 LINK
     }
-
+    */
     
 
     /**
      * Network: Kovan
-     * Oracle: 0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e
-     * Job ID: 29fa9aa13bf1468788b7cc4a500a45b8
+     * Oracle: 0xF405B99ACa8578B9eb989ee2b69D518aaDb90c1F
+     * Job ID: c51694e71fa94217b0f4a71b2a6b565a
      * Fee: 0.1 LINK
      */
 
-     /*
+     
     constructor() public {
-        //setPublicChainlinkToken();
-        setChainlinkToken(0xa36085F69e2889c224210F603D836748e7dC0088);
-        oracle = 0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e;
-        jobId = "29fa9aa13bf1468788b7cc4a500a45b8";
+        setPublicChainlinkToken();
+        //setChainlinkToken(0xa36085F69e2889c224210F603D836748e7dC0088);
+        oracle = 0xF405B99ACa8578B9eb989ee2b69D518aaDb90c1F;
+        jobId = "c51694e71fa94217b0f4a71b2a6b565a";
         fee = 10 ** 17; // (Varies by network and job)
     }
 
-    */
+    
 
     receive() external payable {
 
@@ -91,7 +92,9 @@ contract ChainlinkNFT is ChainlinkClient, Ownable{
      */
     function fulfillCeramicData(bytes32 _requestId, uint256 _questComplete) public recordChainlinkFulfillment(_requestId) {
     	allowMint = _questComplete;
+        if(_questComplete==1){
 
+        }
         emit callbackRan(_questComplete);
     }
 }

@@ -71,6 +71,18 @@ contract QuestCompleteNFT is ERC721{
         require(masterStore.whiteList(_to), "address is not registered!");
         require(masterStore.approvedQuests(questName), "this quest is not valid");
         require(!NFTExists[questName][_to], "this address already has an NFT for this quest!");
+        bytes32 _requestID = checkNFT.requestCeramicData(_did, questName);
+        NFTRequests[_requestID] = NFTData({
+                    to : _to,
+                    URI : _tokenURI,
+                    quest : questName,
+                    did : _did,
+                    completed : false,
+                    exists : true
+
+        });
+        emit NFTRequestMade(_to, questName, _requestID);
+        /*
         tokenID++;
         _mint(_to, tokenID);
         NFTExists[questName][_to] = true;
@@ -84,21 +96,10 @@ contract QuestCompleteNFT is ERC721{
         Quests[_to][questName]= quest_to_add;
         tokensMinted[questName]++;
         emit NFTMinted(_to, _tokenURI);
-
-        /*bytes32 _requestID = checkNFT.requestCeramicData(_did, questName);
-        NFTRequests[_requestID] = NFTData({
-                    to : _to,
-                    URI : _tokenURI,
-                    quest : questName,
-                    did : _did,
-                    completed : false,
-                    exists : true
-
-        });
-        emit NFTRequestMade(_to, questName, _requestID);
         */
+        
     }
-    /*
+    
     function finishMintToken(bytes32 _requestID) public {
         require(msg.sender == checkNFTAddress, "can only be called from NFT contract");
         require(NFTRequests[_requestID].exists, "invalid request ID");
@@ -118,7 +119,7 @@ contract QuestCompleteNFT is ERC721{
         NFTMintData.completed = true;
         emit NFTMinted(NFTMintData.to, NFTMintData.URI);
     }
-    */
+    
 
     function setRarityThreshold(string memory _quest, uint _threshold) public onlyAdmin questExist(_quest){
         require(_threshold >0);

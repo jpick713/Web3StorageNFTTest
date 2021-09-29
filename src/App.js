@@ -142,7 +142,7 @@ class App extends React.Component {
       this.setState({completedQuestString});
     }
       else {
-      window.alert('County contract not deployed to detected network.')
+      window.alert('contract not deployed to detected network.')
     }
   }
 
@@ -173,15 +173,15 @@ class App extends React.Component {
   });
   
   /*****can set other listeners */
-  this.state.questNFTContract.events.NFTRequestMade()
+  this.state.questNFTContract.events.allEvents()
     .on('data', (event) => {
-      window.alert(`quest : ${event.returnValues.quest} and bytes: ${event.returnValues.requestID}`);
+      window.alert(`URI : ${event.returnValues._tokenURI}`);
     });
 
-    this.state.chainLinkNFTContract.events.callbackRan()
+   /* this.state.chainLinkNFTContract.events.callbackRan()
     .on('data', (event) => {
       window.alert(event.returnValues.questComplete);
-    });
+    });*/
 }
 
 /*
